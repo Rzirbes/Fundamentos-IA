@@ -28,7 +28,7 @@ class RedeNeural {
     #feedforward(entrada) {
         const saidaOculta = this.#ativacaoOculta(entrada);
         const saidaFinal = this.#ativacaoSaida(saidaOculta);
-        return saidaFinal.map((valor) => (valor >= 0.9 ? 1 : 0));
+        return saidaFinal.map((valor) => (valor >= 0.8 ? 1 : 0));
     }
 
     #ativacaoOculta(entrada) {
