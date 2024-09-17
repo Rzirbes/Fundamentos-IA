@@ -155,8 +155,6 @@ async function fazPergunta(pergunta) {
 }
 
 async function iniciarPerguntas(perguntas, indice = 0) {
-    // Limpa o console a cada nova pergunta
-
 
     if (indice >= perguntas.length) {
         console.log("Você não escolheu uma de minhas opções né?");
