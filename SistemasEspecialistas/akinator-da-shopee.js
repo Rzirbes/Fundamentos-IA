@@ -1,16 +1,16 @@
 const perguntas = [
     {
-        pergunta: "É Homem?",
+        pergunta: "\nÉ Homem?",
         subElemento: {
             sim: {
-                pergunta: "Ele joga futebol?",
+                pergunta: "Ele é surfista?",
                 subElemento: {
-                    sim: "Neymar",
+                    sim: "Gabriel Medina",
                     nao: {
-                        pergunta: "Ele é piloto?",
+                        pergunta: "Ele é jogador?",
                         subElemento: {
                             sim: "Ayrton Senna",
-                            nao: "Pelé"
+                            nao: "Neyma"
                         }
                     }
                 }
@@ -120,35 +120,44 @@ const perguntas = [
         },
     },
 ];
-    
 
-arrayDeRespostasPossiveis = ["Neymar", "Airton Senna", "Gisele Bunchen", "Margot Robbie", "Goku", "Naruto", "Cachorro", "Vaca"];
 
-//Informa ao usuário para ele pensar em uma das opções válidas
+arrayDeRespostasPossiveis = [
+    ["Neymar", "Airton Senna", "Gisele Bündchen",],
+    ["Margot Robbie", "Goku", "Naruto",],
+    ["Cachorro", "Vaca", 'Gusttavo Lima'],
+    ["Frank Sinatra", "Justin Bieber"],
+    ["Homem-Aranha", "Batman", "Superman"],
+    ["Doutor Estranho", "Leão", "Golfinho"],
+    ["Sonic", "Beyoncé", "Gabriel Medina",]
+];
+
+// Informa ao usuário para ele pensar em uma das opções válidas
 console.log("Pense em uma das opções abaixo para eu tentar adivinhar");
 arrayDeRespostasPossiveis.forEach(resposta => {
     console.log(resposta);
 });
 
-//motor de inferencia
+// Motor de inferência
 const readline = require('readline');
 
-const resposta = readline.createInterface(
-    {
-        input: process.stdin,
-        output: process.stdout
-    }
-);
+const resposta = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 async function fazPergunta(pergunta) {
     return new Promise((resolve) => {
         resposta.question(pergunta, (resposta) => {
             resolve(resposta);
         })
-    })
+    });
 }
 
 async function iniciarPerguntas(perguntas, indice = 0) {
+    // Limpa o console a cada nova pergunta
+
+
     if (indice >= perguntas.length) {
         console.log("Você não escolheu uma de minhas opções né?");
         resposta.close();
@@ -157,12 +166,12 @@ async function iniciarPerguntas(perguntas, indice = 0) {
 
     let elemento = perguntas[indice];
     let respostaUsuario = await fazPergunta(elemento.pergunta + " SIM ou nao\n\n");
-
+    console.clear();
     if (respostaUsuario === 'sim' || respostaUsuario === 'nao') {
         const proximoElemento = elemento.subElemento[respostaUsuario];
-        
+
         if (typeof proximoElemento === 'string') {
-            console.log("A resposta é: " + proximoElemento);
+            console.log("A resposta é: " + proximoElemento + "\n");
             resposta.close();
         } else if (proximoElemento) {
             iniciarPerguntas([proximoElemento]);
