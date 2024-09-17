@@ -9,8 +9,8 @@ const perguntas = [
                     nao: {
                         pergunta: "Ele é jogador?",
                         subElemento: {
-                            sim: "Ayrton Senna",
-                            nao: "Neyma"
+                            sim: "Neymar",
+                            nao: "Ayrton Senna"
                         }
                     }
                 }
