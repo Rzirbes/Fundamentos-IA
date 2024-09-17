@@ -25,10 +25,10 @@ class RedeNeural {
     }
 
     // Método para propagação da entrada na rede
-    #feedforward(entrada) {
+    feedforward(entrada) {
         const saidaOculta = this.#ativacaoOculta(entrada);
         const saidaFinal = this.#ativacaoSaida(saidaOculta);
-        return saidaFinal.map((valor) => (valor >= 0.8 ? 1 : 0));
+        return saidaFinal.map((valor) => (valor));
     }
 
     #ativacaoOculta(entrada) {
@@ -88,7 +88,7 @@ class RedeNeural {
 
     // Função de classificação
     classificar(entradaMatriz) {
-        const saida = this.#feedforward(entradaMatriz);
+        const saida = this.feedforward(entradaMatriz);
         const numero = saida.indexOf(Math.max(...saida));
         return `Número ${numero}`;
     }
