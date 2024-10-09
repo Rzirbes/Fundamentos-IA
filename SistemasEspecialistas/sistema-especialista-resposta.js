@@ -175,6 +175,7 @@ async function processaNodo(nodo) {
 }
 
 async function iniciarPerguntas(perguntas) {
+    
 
     for (const pergunta of perguntas) {
         let resposta = await processaNodo(pergunta);
